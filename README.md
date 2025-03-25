@@ -76,20 +76,20 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 # Flask Deployment
 
-1. Install Dependencies
+. Install Dependencies
 
    pip install flask pandas numpy scikit-learn joblib
 
-1. Flask App Structure
+2. Flask App Structure
 
-├── models/ </br>
-│   ├── Logistic_Regression.pkl </br>
-├── app.py </br>
+├── models/
+│   ├── Logistic_Regression.pkl
+├── app.py
 ├── requirements.txt
 
 3. Run Flask Server
 
-    python app.py
+   python app.py
 
 4. API Usage
 

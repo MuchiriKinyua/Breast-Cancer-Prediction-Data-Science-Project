@@ -78,7 +78,7 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 1. Install Dependencies
 
-    pip install flask pandas numpy scikit-learn joblib
+   pip install flask pandas numpy scikit-learn joblib
 
 1. Flask App Structure
 

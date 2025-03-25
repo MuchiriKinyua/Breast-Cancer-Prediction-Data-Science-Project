@@ -84,9 +84,9 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 1. Flask App Structure
 
-├── models/
-│   ├── Logistic_Regression.pkl
-├── app.py
+├── models/ </br>
+│   ├── Logistic_Regression.pkl </br>
+├── app.py </br>
 ├── requirements.txt
 
 3. Run Flask Server

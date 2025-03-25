@@ -1,28 +1,46 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import numpy as np
 import pandas as pd
-import pickle
+import joblib
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-model = pickle.load(open('model.pkl', 'rb'))
+
+# Load the ML model
+model = joblib.load('models/Logistic_Regression.pkl')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    input_features = [int(request.form[x]) for x in request.form.keys()]
-    features_value = [np.array(input_features)]
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No JSON data received'}), 400
 
-    features_name = ['clump_thickness', 'uniform_cell_size', 'uniform_cell_shape',
-                     'marginal_adhesion', 'single_epithelial_size', 'bare_nuclei',
-                     'bland_chromatin', 'normal_nucleoli', 'mitoses']
+        # Extract features and convert to float
+        input_features = [float(data.get(x, 0)) for x in ['radius_mean', 'concavity_mean', 'smoothness_mean', 'texture_mean']]
+        
 
-    df = pd.DataFrame(features_value, columns=features_name)
-    output = model.predict(df)
+        # Ensure valid input
+        if not any(input_features):
+            return jsonify({'error': 'Invalid input values'}), 400
 
-    res_val = "Breast Cancer" if output == 4 else "No Breast Cancer"
+        # Prepare input data for model
+        df = pd.DataFrame([input_features], columns=['radius_mean', 'concavity_mean', 'smoothness_mean', 'texture_mean'])
+        
+        # Model prediction
+        output = model.predict(df)
+        res_val = "Malignant" if output[0] == 1 else "Benign"
 
-    return jsonify({'prediction_text': f'Patient has {res_val}'})
+        return jsonify({'prediction_text': f'Patient has {res_val}'})
+    except Exception as e:
+
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

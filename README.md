@@ -89,7 +89,7 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 3. Run Flask Server
 
-   python app.py
+    python app.py
 
 4. API Usage
 

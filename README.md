@@ -99,13 +99,11 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 Send a POST request with tumor features:
 
-
     curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"radius_mean": 17.99, "concavity_mean": 0.3, "smoothness_mean": 0.118, "texture_mean": 10.38}'
-
 
 Response:
 
-{"prediction_text": "Patient has Malignant"}
+Patient has Malignant
 
 # Conclusion
 

@@ -78,9 +78,7 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 1. Install Dependencies
 
-
     pip install flask pandas numpy scikit-learn joblib
-
 
 1. Flask App Structure
 
@@ -91,9 +89,7 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 3. Run Flask Server
 
-
    python app.py
-
 
 4. API Usage
 

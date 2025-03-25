@@ -78,9 +78,11 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 1. Install Dependencies
 
-  pip install flask pandas numpy scikit-learn joblib
 
-2. Flask App Structure
+    pip install flask pandas numpy scikit-learn joblib
+
+
+1. Flask App Structure
 
 ├── models/
 │   ├── Logistic_Regression.pkl
@@ -89,13 +91,17 @@ Output: "Patient has Malignant" or "Patient has Benign".
 
 3. Run Flask Server
 
-  python app.py
+
+   python app.py
+
 
 4. API Usage
 
 Send a POST request with tumor features:
 
-  curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"radius_mean": 17.99, "concavity_mean": 0.3, "smoothness_mean": 0.118, "texture_mean": 10.38}'
+
+    curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"radius_mean": 17.99, "concavity_mean": 0.3, "smoothness_mean": 0.118, "texture_mean": 10.38}'
+
 
 Response:
 
